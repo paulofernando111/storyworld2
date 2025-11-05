@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criar Conta | StoryWorld</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | StoryWorld</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="auth-body">
+
   <div class="auth-container">
-    <div class="auth-box">
-      <h2>Criar Conta</h2>
-      <p class="subtitle">Junte-se à comunidade StoryWorld</p>
+    <h1 class="auth-title">Criar conta</h1>
 
-      <form id="registerForm">
-        <input type="text" name="username" placeholder="Nome de usuário" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Senha" required />
-        <button type="submit" class="btn primary">Cadastrar</button>
-      </form>
+    <form id="registerForm" class="auth-form">
+      <input type="text" id="username" placeholder="Nome de usuário" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <input type="password" id="confirmPassword" placeholder="Confirmar senha" required>
 
-      <p class="switch-auth">
-        Já tem conta? <a href="login.html">Entrar</a>
+      <button type="submit" class="auth-btn">Cadastrar</button>
+
+      <p class="auth-footer">
+        Já tem conta? <a href="login.html" class="auth-link">Faça login</a>
       </p>
-    </div>
+    </form>
   </div>
 
   <script src="auth.js"></script>
   <script>
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const username = e.target.username.value.trim();
-      const email = e.target.email.value.trim().toLowerCase();
-      const password = e.target.password.value.trim();
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
 
-      const users = JSON.parse(localStorage.getItem("sw_users") || "[]");
-
-      if (users.some(u => u.email === email)) {
-        alert("Esse email já está cadastrado.");
+      if (password !== confirmPassword) {
+        alert("As senhas não coincidem!");
         return;
       }
 
-      const newUser = {
-        username,
-        email,
-        password,
-        bio: "",
-        photo: "https://via.placeholder.com/100",
-        cover: "https://via.placeholder.com/1200x350"
-      };
+      const users = JSON.parse(localStorage.getItem("sw_users") || "[]");
 
+      if (users.find(u => u.email === email)) {
+        alert("Esse email já está cadastrado!");
+        return;
+      }
+
+      const newUser = { username, email, password, bio: "", photo: "" };
       users.push(newUser);
       localStorage.setItem("sw_users", JSON.stringify(users));
-      localStorage.setItem("sw_user", JSON.stringify(newUser));
+      localStorage.setItem("sw_user", JSON.stringify(newUser)); // loga automaticamente
 
+      alert("Cadastro realizado com sucesso!");
       window.location.href = "catalog.html";
     });
   </script>
+
 </body>
 </html>
