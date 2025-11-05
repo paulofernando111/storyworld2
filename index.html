@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryWorld - Entrar ou Criar Conta</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+
+  <div class="login-container">
+    <h1 class="logo">StoryWorld</h1>
+    <p class="subtitle">Entre para criar, ler e compartilhar histórias ✨</p>
+
+    <!-- Formulário -->
+    <form id="auth-form" class="auth-form">
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <input type="password" id="password" placeholder="Senha" required>
+
+      <button type="submit" class="btn-primary" id="loginBtn">Entrar</button>
+      <button type="button" class="btn-secondary" id="registerBtn">Criar Conta</button>
+    </form>
+
+    <p id="error-message" class="error-message"></p>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
