@@ -1,0 +1,48 @@
+<!-- register.html -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Cadastro | StoryWorld</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="container">
+  <nav class="navbar"><a class="logo" href="index.html">StoryWorld</a><div id="nav-account"></div></nav>
+
+  <main style="max-width:480px;margin:40px auto">
+    <div class="card">
+      <h2>Criar conta</h2>
+      <form id="registerForm">
+        <label>Email</label>
+        <input id="email" type="email" class="input" required>
+        <label>Nome de usuário</label>
+        <input id="username" class="input" required>
+        <label>Senha (mínimo 6 caracteres)</label>
+        <input id="password" type="password" class="input" minlength="6" required>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="button" type="submit">Cadastrar</button>
+          <a href="login.html" class="muted" style="align-self:center">Já tem conta?</a>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script src="auth.js"></script>
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+
+  if(!email || !username || password.length < 6){ alert('Preencha corretamente'); return; }
+
+  const users = JSON.parse(localStorage.getItem('sw_users')||'[]');
+  if(users.find(u=>u.email===email)){ alert('Email já cadastrado'); return; }
+
+  const newUser = { email, username, password, photo:'', cover:'', bio:'', friends:[], favorites:[], playlists:[], plan:'free' };
+  users.push(newUser);
+  localStorage.setItem('sw_users', JSON.stringify(users));
+
+  // login automático
+  localStorage.setItem('sw_user', JSON.stringify(newUser));
+  alert('Cadastro finalizado — você entrou automaticamente!');
+  window.location.href = 'catalog.html';
+});
+</script>
+</body></html>
