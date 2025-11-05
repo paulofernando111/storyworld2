@@ -8,74 +8,47 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- ✅ NAVBAR -->
 <nav class="navbar">
   <a href="home.html" class="logo">StoryWorld</a>
   <ul class="nav-links">
     <li><a href="catalog.html">Catálogo</a></li>
-    <li><a href="writer.html">Criar História</a></li>
+    <li><a href="writer.html">Criar</a></li>
     <li><a href="search.html">Buscar</a></li>
   </ul>
   <div id="nav-account"></div>
 </nav>
 
-<!-- BEM-VINDO -->
-<header class="welcome-header">
-  <h1>Bem-vindo de volta 👋</h1>
-  <p>Descubra histórias incríveis, personalize seu mundo e comece a criar.</p>
+<!-- ✅ BANNER -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>Descubra mundos criados por pessoas como você</h1>
+    <p>Leia, escreva e compartilhe histórias incríveis.</p>
+    <a href="catalog.html" class="cta-btn">📚 Explorar histórias</a>
+  </div>
 </header>
 
-<!-- FEED DE HISTÓRIAS -->
-<section class="story-section">
-  <h2>📈 Em Alta</h2>
-  <div class="story-grid" id="popular-stories"></div>
+<!-- ✅ SEÇÃO DE RECOMENDADOS -->
+<section class="section">
+  <h2>🔥 Recomendados para você</h2>
+  <div class="story-cards" id="recommended-stories">
+    <!-- Histórias aparecem aqui dinamicamente -->
+  </div>
 </section>
 
-<section class="story-section">
-  <h2>✨ Recomendadas para Você</h2>
-  <div class="story-grid" id="recommended-stories"></div>
+<!-- ✅ SEÇÃO NOVAS HISTÓRIAS -->
+<section class="section">
+  <h2>🆕 Lançamentos Recentes</h2>
+  <div class="story-cards" id="recent-stories"></div>
 </section>
 
-<section class="story-section">
-  <h2>🆕 Novas Histórias</h2>
-  <div class="story-grid" id="new-stories"></div>
-</section>
+<!-- ✅ FOOTER -->
+<footer>
+  © 2025 StoryWorld — Criando universos com palavras.
+</footer>
 
 <script src="auth.js"></script>
-<script>
-// ✅ Verifica login
-const user = JSON.parse(localStorage.getItem("sw_user"));
-if (!user) {
-  window.location.href = "login.html";
-}
+<script src="home.js"></script>
 
-// ✅ Carregar histórias do banco (localStorage)
-const stories = JSON.parse(localStorage.getItem("stories") || "[]");
-
-// ✅ Função para renderizar cards
-function renderStories(targetId, storyList) {
-  const container = document.getElementById(targetId);
-  container.innerHTML = storyList.map(story => `
-    <div class="story-card">
-      <img src="${story.coverUrl || 'https://via.placeholder.com/200x300'}" class="story-cover">
-      <div class="story-info">
-        <h3>${story.title}</h3>
-        <p>${story.topic || 'Sem gênero'}</p>
-        <button onclick="viewStory('${story.title}')">Ler</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ✅ Exibe cards
-renderStories("popular-stories", stories.slice(0, 5));
-renderStories("recommended-stories", stories.slice(5, 10));
-renderStories("new-stories", stories.slice(-5));
-
-// ✅ Função Ler (só abre alerta por enquanto)
-function viewStory(title) {
-  alert("Abrir história: " + title);
-}
-</script>
 </body>
 </html>
