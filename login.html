@@ -1,36 +1,48 @@
-<!-- login.html -->
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Login | StoryWorld</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="container">
-  <nav class="navbar"><a class="logo" href="index.html">StoryWorld</a><div id="nav-account"></div></nav>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar | StoryWorld</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>Bem-vindo de volta</h2>
+      <p class="subtitle">Entre para continuar explorando histórias</p>
 
-  <main style="max-width:420px;margin:40px auto">
-    <div class="card">
-      <h2>Entrar</h2>
       <form id="loginForm">
-        <label>Email</label><input id="email" type="email" class="input" required>
-        <label>Senha</label><input id="password" type="password" class="input" required>
-        <div style="margin-top:12px;display:flex;gap:8px">
-          <button class="button" type="submit">Entrar</button>
-          <a href="register.html" class="muted" style="align-self:center">Criar conta</a>
-        </div>
+        <input type="email" name="email" placeholder="Seu email" required />
+        <input type="password" name="password" placeholder="Sua senha" required />
+        <button type="submit" class="btn primary">Entrar</button>
       </form>
+
+      <p class="switch-auth">
+        Não tem conta? <a href="register.html">Crie uma agora</a>
+      </p>
     </div>
-  </main>
-</div>
+  </div>
 
-<script src="auth.js"></script>
-<script>
-document.getElementById('loginForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  const password = document.getElementById('password').value;
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const users = JSON.parse(localStorage.getItem('sw_users')||'[]');
-  const found = users.find(u => u.email === email && u.password === password);
-  if(!found){ alert('Email ou senha inválidos'); return; }
-  localStorage.setItem('sw_user', JSON.stringify(found));
-  alert('Bem-vindo de volta!');
-  window.location.href = 'catalog.html';
-});
-</script>
-</body></html>
+      const email = e.target.email.value.trim().toLowerCase();
+      const password = e.target.password.value.trim();
+
+      const users = JSON.parse(localStorage.getItem("sw_users") || "[]");
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("Email ou senha incorretos!");
+        return;
+      }
+
+      localStorage.setItem("sw_user", JSON.stringify(user));
+      window.location.href = "catalog.html";
+    });
+  </script>
+</body>
+</html>
