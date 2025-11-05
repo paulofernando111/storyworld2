@@ -38,13 +38,15 @@ body {
 
 /* HERO (BANNER) */
 .hero {
-  background: url('https://wallpaperaccess.com/full/3720700.jpg') center/cover no-repeat;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    height: 70vh;
+    background: linear-gradient(180deg, #121212, #000);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
 
 .hero-content h1 {
   font-size: 2.8rem;
