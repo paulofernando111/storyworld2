@@ -23,3 +23,29 @@ function displayStories(containerId, stories) {
     `;
   });
 }
+const defaultCover = "https://via.placeholder.com/300x400?text=Sem+Capa";
+
+const stories = [
+  {
+    title: "A Jornada Misteriosa",
+    author: "Autor Desconhecido",
+    cover: "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg"
+  },
+  {
+    title: "Floresta Sombria",
+    author: "Maria Silva",
+    cover: "" // sem imagem → vai usar default
+  }
+];
+
+const container = document.querySelector(".stories-grid");
+stories.forEach(story => {
+  const cover = story.cover && story.cover.trim() !== "" ? story.cover : defaultCover;
+  container.innerHTML += `
+    <div class="story-card">
+        <img src="${cover}">
+        <h3>${story.title}</h3>
+        <p>por ${story.author}</p>
+    </div>
+  `;
+});
