@@ -1,25 +1,24 @@
-/* ======== Layout geral ======== */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #0f0f0f;
-  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  background: #0d0d0d;
+  color: white;
 }
 
-/* ======== Navbar ======== */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #181818;
-  padding: 10px 20px;
+  padding: 15px 40px;
+  background: #121212;
 }
 
-.logo {
+.navbar .logo {
+  color: #1db954;
   font-size: 22px;
-  font-weight: bold;
-  color: #fff;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .nav-links {
@@ -29,7 +28,7 @@ body {
 }
 
 .nav-links a {
-  color: #ccc;
+  color: #b3b3b3;
   text-decoration: none;
 }
 
@@ -37,68 +36,89 @@ body {
   color: #fff;
 }
 
-#nav-account {
+/* HERO (BANNER) */
+.hero {
+  background: url('https://wallpaperaccess.com/full/3720700.jpg') center/cover no-repeat;
+  height: 60vh;
   display: flex;
-  gap: 10px;
-}
-
-/* ======== Header de boas-vindas ======== */
-.welcome-header {
-  padding: 40px 20px;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background: linear-gradient(to right, #1d1d1d, #121212);
 }
 
-/* ======== Seção de Histórias ======== */
-.story-section {
-  padding: 20px;
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin: 0;
 }
 
-.story-section h2 {
-  margin-bottom: 10px;
+.hero-content p {
+  color: #cccccc;
+  margin: 10px 0;
 }
 
-.story-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+.cta-btn {
+  background: #1db954;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.cta-btn:hover {
+  background: #17a444;
+}
+
+/* STORY CARDS */
+.section {
+  padding: 30px;
+}
+
+.section h2 {
+  margin-bottom: 15px;
+}
+
+.story-cards {
+  display: flex;
+  overflow-x: auto;
   gap: 15px;
 }
 
 .story-card {
-  background: #1e1e1e;
+  min-width: 180px;
+  background: #181818;
   border-radius: 10px;
-  overflow: hidden;
-  transition: all 0.3s;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .story-card:hover {
   transform: scale(1.05);
+  background: #222;
 }
 
-.story-cover {
+.story-card img {
   width: 100%;
-  height: 220px;
+  border-radius: 10px;
+  height: 230px;
   object-fit: cover;
 }
 
-.story-info {
-  padding: 10px;
-  text-align: center;
-}
-
-.story-info h3 {
+.story-card h3 {
+  margin: 10px 0 5px;
   font-size: 16px;
-  margin: 5px 0;
 }
 
-.story-info button {
-  background: #ffb800;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
+.story-card p {
+  color: #b3b3b3;
+  font-size: 13px;
 }
 
-.story-info button:hover {
-  background: #e0a600;
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #999;
 }
