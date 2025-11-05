@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrar | StoryWorld</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | StoryWorld</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="auth-body">
+
   <div class="auth-container">
-    <div class="auth-box">
-      <h2>Bem-vindo de volta</h2>
-      <p class="subtitle">Entre para continuar explorando histórias</p>
+    <h1 class="auth-title">StoryWorld</h1>
 
-      <form id="loginForm">
-        <input type="email" name="email" placeholder="Seu email" required />
-        <input type="password" name="password" placeholder="Sua senha" required />
-        <button type="submit" class="btn primary">Entrar</button>
-      </form>
+    <form id="loginForm" class="auth-form">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Senha" required>
 
-      <p class="switch-auth">
-        Não tem conta? <a href="register.html">Crie uma agora</a>
+      <button type="submit" class="auth-btn">Entrar</button>
+
+      <a href="forgot-password.html" class="auth-link">Esqueceu sua senha?</a>
+
+      <p class="auth-footer">
+        Não tem conta? <a href="register.html" class="auth-link">Cadastre-se</a>
       </p>
-    </div>
+    </form>
   </div>
 
   <script src="auth.js"></script>
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-      const email = e.target.email.value.trim().toLowerCase();
-      const password = e.target.password.value.trim();
-
-      const users = JSON.parse(localStorage.getItem("sw_users") || "[]");
-      const user = users.find(u => u.email === email && u.password === password);
-
-      if (!user) {
-        alert("Email ou senha incorretos!");
-        return;
-      }
-
-      localStorage.setItem("sw_user", JSON.stringify(user));
-      window.location.href = "catalog.html";
-    });
-  </script>
-</body>
-</html>
+      const users = JSON.parse(localStorage.
