@@ -32,3 +32,6 @@ function renderAccountArea() {
 }
 
 document.addEventListener("DOMContentLoaded", renderAccountArea);
+// Após login bem-sucedido:
+localStorage.setItem("sw_user", JSON.stringify(found));
+window.location.href = "home.html";
