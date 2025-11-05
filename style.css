@@ -106,3 +106,85 @@ h2{margin-bottom:12px}
   color: #7b5bff;
   text-decoration: none;
 }
+/* 🌑 Fundo estilo Spotify */
+.auth-body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #000, #0d0d0d, #121212);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+/* 📦 Caixa de Login/Cadastro */
+.auth-container {
+  background: #181818;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ✨ Título */
+.auth-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #1DB954;
+}
+
+/* 📥 Inputs */
+.auth-form input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: #333;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+}
+
+.auth-form input:focus {
+  box-shadow: 0 0 0 2px #1DB954;
+}
+
+/* ✅ Botão */
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.auth-btn:hover {
+  background: #17a74a;
+}
+
+/* 🔗 Links */
+.auth-link {
+  color: #1DB954;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #bbb;
+}
