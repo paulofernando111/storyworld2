@@ -1,32 +1,34 @@
-// auth.js (usamos sw_user)
-// simples, seguro e idempotente
+// auth.js
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("sw_user") || "null");
+}
 
-(function(){
-  function safeParse(v){ try{ return JSON.parse(v); }catch(e){ return null; } }
-  function getUser(){ return safeParse(localStorage.getItem('sw_user')); }
-  function setUser(u){ localStorage.setItem('sw_user', JSON.stringify(u)); }
-  function clearUser(){ localStorage.removeItem('sw_user'); }
+function logoutUser() {
+  localStorage.removeItem("sw_user");
+  window.location.href = "login.html";
+}
 
-  function render(){
-    const container = document.getElementById('nav-account');
-    if(!container) return;
-    const user = getUser();
-    if(!user){
-      container.innerHTML = `<a class="btn" href="login.html">Entrar</a> <a class="btn" href="register.html" style="margin-left:8px">Cadastrar</a>`;
-      return;
-    }
-    const avatar = user.photo || 'https://via.placeholder.com/40';
-    const name = user.username || user.email;
-    container.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px">
-        <button class="profile-btn" id="profileBtn"><img src="${avatar}" class="nav-avatar"> <span class="muted">${name}</span></button>
-      </div>
-    `;
-    document.getElementById('profileBtn').addEventListener('click', ()=> window.location.href='perfil.html');
+function renderAccountArea() {
+  const container = document.getElementById("nav-account");
+  if (!container) return;
+
+  const user = getCurrentUser();
+  if (!user) {
+    container.innerHTML = `<a href="login.html" class="btn small">Entrar</a>`;
+    return;
   }
 
-  window.auth = { getUser, setUser, clearUser, render };
-  document.addEventListener('DOMContentLoaded', ()=> { render(); setTimeout(render,200); setTimeout(render,1200); });
-  window.addEventListener('storage', (e)=> { if(e.key==='sw_user') render(); });
+  container.innerHTML = `
+    <div class="profile-menu">
+      <img src="${user.photo}" class="nav-avatar">
+      <span>${user.username}</span>
+      <div class="dropdown">
+        <a href="perfil.html">Meu Perfil</a>
+        <a href="writer.html">Escrever</a>
+        <button onclick="logoutUser()">Sair</button>
+      </div>
+    </div>
+  `;
+}
 
-})();
+document.addEventListener("DOMContentLoaded", renderAccountArea);
