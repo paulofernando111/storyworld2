@@ -1,0 +1,37 @@
+<!-- catalog.html -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Catálogo | StoryWorld</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="container">
+  <nav class="navbar"><a class="logo" href="index.html">StoryWorld</a><ul class="nav-links"><li><a href="writer.html">Escrever</a></li></ul><div id="nav-account"></div></nav>
+
+  <main>
+    <h2>Catálogo</h2>
+    <div style="margin:14px 0;display:flex;gap:8px;align-items:center">
+      <input id="search" class="input" placeholder="Buscar título ou autor...">
+      <select id="filter" class="input" style="width:180px">
+        <option value="">Todos os gêneros</option>
+        <option>Romance</option><option>Terror</option><option>Fantasia</option><option>Aventura</option>
+      </select>
+      <button class="button" id="apply">Aplicar</button>
+    </div>
+
+    <div id="books" class="grid"></div>
+  </main>
+</div>
+
+<script src="auth.js"></script>
+<script>
+function renderBooks(){
+  const books = JSON.parse(localStorage.getItem('stories')||'[]');
+  const container = document.getElementById('books');
+  container.innerHTML = '';
+  if(!books.length) container.innerHTML = '<p class="muted">Nenhuma história publicada ainda.</p>';
+  books.forEach(b=>{
+    const el = document.createElement('div'); el.className='card-book';
+    el.innerHTML = `<img class="book-cover" src="${b.cover||'https://via.placeholder.com/400x600'}"><h3>${b.title}</h3><p class="muted">por ${b.author}</p>`;
+    container.appendChild(el);
+  });
+}
+document.getElementById('apply').addEventListener('click', ()=> { renderBooks(); });
+document.addEventListener('DOMContentLoaded', renderBooks);
+</script>
+</body></html>
