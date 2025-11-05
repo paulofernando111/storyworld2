@@ -1,37 +1,83 @@
-<!-- catalog.html -->
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Catálogo | StoryWorld</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="container">
-  <nav class="navbar"><a class="logo" href="index.html">StoryWorld</a><ul class="nav-links"><li><a href="writer.html">Escrever</a></li></ul><div id="nav-account"></div></nav>
-
-  <main>
-    <h2>Catálogo</h2>
-    <div style="margin:14px 0;display:flex;gap:8px;align-items:center">
-      <input id="search" class="input" placeholder="Buscar título ou autor...">
-      <select id="filter" class="input" style="width:180px">
-        <option value="">Todos os gêneros</option>
-        <option>Romance</option><option>Terror</option><option>Fantasia</option><option>Aventura</option>
-      </select>
-      <button class="button" id="apply">Aplicar</button>
-    </div>
-
-    <div id="books" class="grid"></div>
-  </main>
-</div>
-
-<script src="auth.js"></script>
-<script>
-function renderBooks(){
-  const books = JSON.parse(localStorage.getItem('stories')||'[]');
-  const container = document.getElementById('books');
-  container.innerHTML = '';
-  if(!books.length) container.innerHTML = '<p class="muted">Nenhuma história publicada ainda.</p>';
-  books.forEach(b=>{
-    const el = document.createElement('div'); el.className='card-book';
-    el.innerHTML = `<img class="book-cover" src="${b.cover||'https://via.placeholder.com/400x600'}"><h3>${b.title}</h3><p class="muted">por ${b.author}</p>`;
-    container.appendChild(el);
-  });
+/* ======== NAVBAR CATÁLOGO ======== */
+.catalog-page {
+  background: #121212;
+  color: #fff;
+  min-height: 100vh;
 }
-document.getElementById('apply').addEventListener('click', ()=> { renderBooks(); });
-document.addEventListener('DOMContentLoaded', renderBooks);
-</script>
-</body></html>
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #000;
+}
+
+.navbar .search-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  width: 300px;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #1db954;
+  color: #1db954;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #1db954;
+  color: #fff;
+}
+
+/* ======== CATÁLOGO ======== */
+.catalog-container {
+  padding: 30px 40px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.story-card {
+  background: #1c1c1c;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.story-card:hover {
+  transform: scale(1.05);
+}
+
+.story-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.story-card h3 {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.story-card p {
+  font-size: 0.9rem;
+  color: #bbb;
+}
